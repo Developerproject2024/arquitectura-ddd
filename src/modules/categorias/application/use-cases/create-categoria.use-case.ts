@@ -1,5 +1,5 @@
+import { ICategoriaRepository } from "@modules/categorias/domain/repositories/categoria.repository.interface";
 import { Categoria } from "../../domain/entities/categoria.entity";
-import { ICategoriaRepository } from "../../domain/categoria.repository.interface";
 import { CreateCategoriaDto } from "../dto/create-categoria.dto";
 
 export class CreateCategoriaUseCase {

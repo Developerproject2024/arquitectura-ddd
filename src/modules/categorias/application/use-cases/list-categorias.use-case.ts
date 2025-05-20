@@ -1,4 +1,5 @@
-import { ICategoriaRepository } from '../../domain/categoria.repository.interface';
+import { ICategoriaRepository } from "@modules/categorias/domain/repositories/categoria.repository.interface";
+
 
 export class ListCategoriasUseCase {
   constructor(private readonly repo: ICategoriaRepository) {}

@@ -3,6 +3,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import databaseConfig from './config/database.config';
 import { CategoriasModule } from '@modules/categorias/categorias.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ResponseInterceptor } from '@shared/interceptors/response.interceptor';
 
 @Module({
   imports: [
@@ -28,6 +30,12 @@ import { CategoriasModule } from '@modules/categorias/categorias.module';
       },
     }),
     CategoriasModule,
+  ],
+   providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ResponseInterceptor,
+    },
   ],
 })
 export class AppModule {}
