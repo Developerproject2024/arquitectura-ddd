@@ -3,8 +3,10 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import databaseConfig from './config/database.config';
 import { CategoriasModule } from '@modules/categorias/categorias.module';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseInterceptor } from '@shared/interceptors/response.interceptor';
+import { ValidationExceptionFilter } from '@shared/filters/validation.exception.filter';
+import { ApiKeyGuard } from '@shared/guards/api-key.guard';
 
 @Module({
   imports: [
@@ -36,6 +38,14 @@ import { ResponseInterceptor } from '@shared/interceptors/response.interceptor';
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor,
     },
+    {
+      provide: APP_GUARD,
+      useClass: ApiKeyGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: ValidationExceptionFilter,
+    }
   ],
 })
 export class AppModule {}
