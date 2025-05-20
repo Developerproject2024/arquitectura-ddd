@@ -9,4 +9,5 @@ export const envValidationSchema = Joi.object({
     DB_NAME: Joi.string().required(),
   }),
   API_KEY: Joi.string().required(),
+  NODE_ENV: Joi.string().required(),
 });
