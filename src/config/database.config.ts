@@ -2,7 +2,7 @@ import settings from '../settings';
 
 export default () => {
   const config = settings();
-  const env = process.env.NODE_ENV || 'dev';
+  const env = config.nodeEnv || 'dev';
   const dbConfigByEnv = {
     dev: {
       dialect: 'postgres',

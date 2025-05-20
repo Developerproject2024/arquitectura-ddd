@@ -7,4 +7,5 @@ export default () => ({
     name: process.env.DB_NAME,
   },
   apiKey: process.env.API_KEY,
+  nodeEnv: process.env.NODE_ENV
 });
