@@ -1,7 +1,7 @@
+import { Categoria } from "@modules/categorias/domain/entities/categoria.entity";
+import { ICategoriaRepository } from "@modules/categorias/domain/repositories/categoria.repository.interface";
 import { Injectable } from "@nestjs/common";
-import { ICategoriaRepository } from "../domain/categoria.repository.interface";
-import { Categoria } from "../domain/categoria.entity";
-import { CategoriaModel } from "./categoria.model";
+import { CategoriaModel } from "../model/categoria.model";
 
 @Injectable()
 export class CategoriaRepository implements ICategoriaRepository {

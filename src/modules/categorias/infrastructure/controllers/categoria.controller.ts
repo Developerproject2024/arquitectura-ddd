@@ -1,7 +1,8 @@
 
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CreateCategoriaUseCase } from '../application/use-cases/create-categoria.use-case';
-import { ListCategoriasUseCase } from '../application/use-cases/list-categorias.use-case';
+import { CreateCategoriaUseCase } from '../../application/use-cases/create-categoria.use-case';
+import { ListCategoriasUseCase } from '../../application/use-cases/list-categorias.use-case';
+import { CreateCategoriaDto } from '../../application/dto/create-categoria.dto';
 
 @Controller('categorias')
 export class CategoriaController {
@@ -11,7 +12,7 @@ export class CategoriaController {
   ) {}
 
   @Post()
-  async create(@Body() dto: { nombre: string }) {
+  async create(@Body() dto: CreateCategoriaDto) {
     return await this.createCategoriaUseCase.execute(dto);
   }
 
