@@ -1,10 +1,15 @@
-export default () => ({
-  database: {
-    dialect: 'postgres',
-    host: process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.DB_PORT, 10) || 5432,
-    username: process.env.DB_USERNAME || 'postgres',
-    password: process.env.DB_PASSWORD || 'password',
-    name: process.env.DB_NAME || 'cine',
-  },
-});
+import settings from '../settings';
+
+export default () => {
+  const config = settings();
+  return {
+    database: {
+      dialect: 'postgres',
+      host: config.db.host,
+      port: config.db.port,
+      username: config.db.username,
+      password: config.db.password,
+      name: config.db.name,
+    },
+  };
+};
