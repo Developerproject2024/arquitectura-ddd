@@ -1,0 +1,51 @@
+module.exports = {
+  roots: ['<rootDir>', '../test/unit'],
+  moduleFileExtensions: ['js', 'json', 'ts'],
+  rootDir: 'src',
+  testMatch: ['**/?(*.)+(spec|test).ts'],
+  transform: {
+    '^.+\\.(t|j)s$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '^@modules/(.*)$': '<rootDir>/modules/$1',
+    '^@shared/(.*)$': '<rootDir>/shared/$1',
+    '^@config/(.*)$': '<rootDir>/config/$1',
+  },
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/e2e/',
+    '/src/main.ts',
+    '/src/app.module.ts',
+    'src/settings.ts',
+    '/src/config/',
+    '/src/database/migrations/',
+  ],
+  collectCoverage: false,
+  collectCoverageFrom: [
+    '**/*.(t|j)s',
+    '!**/main.ts',
+    '!**/*.module.ts',
+    '!**/test/**',
+  ],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '/test/',
+    '/e2e/',
+     '/src/main.ts',
+    '/src/app.module.ts',
+    'src/settings.ts',
+    '/src/config/',
+    '/src/database/migrations/',
+  ],
+  coverageDirectory: '../coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
+  testEnvironment: 'node',
+  coverageThreshold: {
+    global: {
+      statements: 80,
+      branches: 80,
+      functions: 80,
+      lines: 80,
+    },
+  },
+};

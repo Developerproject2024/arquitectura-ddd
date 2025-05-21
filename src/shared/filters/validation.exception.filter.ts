@@ -19,16 +19,20 @@ export class ValidationExceptionFilter implements ExceptionFilter {
 
     if (
       typeof exceptionResponse === 'object' &&
-      (exceptionResponse as any).message &&
-      Array.isArray((exceptionResponse as any).message)
+      (exceptionResponse as any).message
     ) {
-      errors = (exceptionResponse as any).message.map((msg: string) => {
-        if (msg.includes('should not exist')) {
-          const property = msg.split(' ')[1];
-          return `La propiedad '${property}' no está permitida`;
-        }
-        return msg;
-      });
+      const msg = (exceptionResponse as any).message;
+      if (Array.isArray(msg)) {
+        errors = msg.map((m: string) => {
+          if (m.includes('should not exist')) {
+            const property = m.split(' ')[1];
+            return `La propiedad '${property}' no está permitida`;
+          }
+          return m;
+        });
+      } else if (typeof msg === 'string') {
+        errors = [msg];
+      }
     } else if (typeof exceptionResponse === 'string') {
       errors = [exceptionResponse];
     }
